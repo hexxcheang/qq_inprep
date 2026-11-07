@@ -1,0 +1,1 @@
+{"name":"eptc2026-badge","private":true,"scripts":{"build":"node build_badges.js"},"dependencies":{"pdf-lib":"^1.17.1"}}
