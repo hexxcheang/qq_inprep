@@ -48,19 +48,24 @@ function trace(pts, { color = C.trace, w = 0.35, pad = 1.3, pads = 'end' } = {})
     ends.map(sq).join('');
 }
 
-// Marina Bay Sands, drawn in a 100 x 46 local box.
-function mbs() {
+// Marina Bay Sands skyline, drawn in a 100 x 40 local box whose bottom edge (y=40)
+// sits on the top of the footer bar. It uses the footer's own gradient, so the
+// towers grow out of the bar as one shape instead of a separate picture.
+const MBS = { x: 6, s: 0.4, base: 141 };             // 40 mm wide, ~14 mm tall
+function mbs(b) {
+  const { x: ox, s } = MBS;
+  const fill = 'url(#brandLocal)';
   const tower = x => {
     const r = x + 10;
-    return `<path d="M${x} 9.2 L${r} 9.0 L${r} 29 Q${r + 0.4} 37 ${r + 2.8} 40 L${x - 0.4} 40 Z" fill="url(#mbsGrad)"/>` +
-      [2.5, 5, 7.5].map(o => `<line x1="${x + o}" y1="10.5" x2="${x + o}" y2="38" stroke="#fff" stroke-opacity="0.22" stroke-width="0.35"/>`).join('');
+    return `<path d="M${x} 9.2 L${r} 9.0 L${r} 30 Q${r + 0.5} 38 ${r + 3.2} 41.5 L${x - 0.4} 41.5 Z" fill="${fill}"/>` +
+      [2.5, 5, 7.5].map(o => `<line x1="${x + o}" y1="11" x2="${x + o}" y2="40" stroke="#fff" stroke-opacity="0.18" stroke-width="0.35"/>`).join('');
   };
   return `
-    <rect x="12" y="36.5" width="74" height="3.5" fill="${C.orange}" opacity="0.28"/>
+    <linearGradient id="brandLocal" gradientUnits="userSpaceOnUse" x1="${(-b - ox) / s}" x2="${(W + b - ox) / s}" y1="0" y2="0">
+      <stop offset="0" stop-color="${C.dark}"/><stop offset="0.5" stop-color="${C.mid}"/><stop offset="1" stop-color="${C.orange}"/>
+    </linearGradient>
     ${tower(16)}${tower(41)}${tower(66)}
-    <path d="M3 8.1 Q9 6.1 20 5.9 L91 5.3 Q97.5 5.4 100 6.9 Q97.5 8.6 91 8.8 L20 9.5 Q9 9.6 3 8.1 Z" fill="${C.dark}"/>
-    <line x1="0" y1="40.4" x2="100" y2="40.4" stroke="${C.dark}" stroke-width="0.8"/>
-    <path d="M8 43 H30 M40 43 H66 M74 43 H94 M18 45.3 H44 M54 45.3 H82" stroke="${C.orange}" stroke-opacity="0.45" stroke-width="0.7" stroke-linecap="round"/>`;
+    <path d="M3 8.1 Q9 6.1 20 5.9 L91 5.3 Q97.5 5.4 100 6.9 Q97.5 8.6 91 8.8 L20 9.5 Q9 9.6 3 8.1 Z" fill="${fill}"/>`;
 }
 
 function qrPlaceholder(x, y, s) {
@@ -103,9 +108,6 @@ function badgeSVG(cat, b) {
     <linearGradient id="paper" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.55" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FDF3EC"/>
     </linearGradient>
-    <linearGradient id="mbsGrad" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="${C.orange}"/><stop offset="1" stop-color="${C.dark}"/>
-    </linearGradient>
     <pattern id="bga" width="2.6" height="2.6" patternUnits="userSpaceOnUse">
       <circle cx="1.3" cy="1.3" r="0.45" fill="${C.trace}"/>
     </pattern>
@@ -129,6 +131,10 @@ function badgeSVG(cat, b) {
   ${trace([[-b, 112], [5, 112]])}
   ${trace([[40, 104.5], [50, 104.5], [53.5, 108], [60, 108]], { pads: 'both' })}
   ${trace([[W + b, 128], [99.5, 128]])}
+  <!-- traces wired into the SkyPark deck, so the skyline reads as part of the circuit -->
+  ${trace([[-b, 125], [3.2, 125], [6.4, 128.2], [7.6, 128.2]], { pad: 0 })}
+  ${trace([[45.6, 127.75], [51, 127.75], [55, 123.6], [61, 123.6]])}
+  ${trace([[20, 118.5], [24.5, 118.5], [27.5, 121.5], [38, 121.5]], { pads: 'both' })}
 
   <!-- logo -->
   <image href="${LOGO}" x="16.5" y="12" width="72" height="${72 * 208 / 634}" preserveAspectRatio="xMidYMid meet"/>
@@ -142,14 +148,13 @@ function badgeSVG(cat, b) {
   ${ribbonFill}
   ${stubs}
 
-  <!-- Marina Bay Sands (≈ 40 x 18 mm incl. label, ~5% of the badge) -->
-  <g transform="translate(10 115) scale(0.40)">${mbs()}</g>
 
   <!-- QR code area -->
   ${qrPlaceholder(66, 105, 31)}
 
-  <!-- bottom brand bar -->
+  <!-- bottom brand bar with the Marina Bay Sands skyline rising out of it (~40 x 14 mm) -->
   <rect x="${-b}" y="141" width="${W + 2 * b}" height="${7 + b}" fill="url(#brand)"/>
+  <g transform="translate(${MBS.x} ${MBS.base - 40 * MBS.s}) scale(${MBS.s})">${mbs(b)}</g>
 </svg>`;
 }
 
@@ -172,7 +177,6 @@ function badgeHTML(cat, b) {
   .aff { margin-top: 2.4mm; font-weight: 500; color: ${C.sub}; font-size: 4.1mm; line-height: 1.2; }
   .cat { top: 88mm; height: 13mm; display: flex; align-items: center; justify-content: center; padding: 0 11mm;
          font-weight: 800; text-transform: uppercase; letter-spacing: 0.09em; font-size: 5.2mm; white-space: nowrap; color: ${cat.fg}; }
-  .sg { top: 134.6mm; left: 10mm; width: 40mm; font-weight: 700; font-size: 2.3mm; letter-spacing: 0.42em; color: #A9583A; padding-left: 0.42em; }
   .foot { top: 141mm; height: 7mm; display: flex; align-items: center; justify-content: space-between; padding: 0 7mm;
           color: #fff; font-size: 2.35mm; font-weight: 600; letter-spacing: 0.04em; text-align: left; }
   .foot span:last-child { font-weight: 500; opacity: 0.95; }
@@ -186,7 +190,6 @@ ${badgeSVG(cat, b)}
     <div class="aff" id="aff">${AFFILIATION}</div>
   </div>
   <div class="abs cat" id="cat">${cat.label}</div>
-  <div class="abs sg">SINGAPORE</div>
   <div class="abs foot"><span>eptc-ieee.net</span><span>IEEE EPS Flagship Conference</span></div>
 </div></div>
 <script>

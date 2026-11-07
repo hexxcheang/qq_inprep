@@ -19,8 +19,8 @@ Size: 105 × 148 mm (A6 portrait). All categories use the same background. Only 
 - 38–47: “28th Electronics Packaging Technology Conference · 1 – 4 December 2026 · Singapore”
 - 53–86: **FULL NAME** (shrinks to fit, wraps if needed) + AFFILIATION
 - 88–101: category ribbon (full width)
-- 105–136: QR code area, 31 × 31 mm (right) · Marina Bay Sands, ~40 × 18 mm with label, ~5 % of the badge (left)
-- 141–148: brand footer bar (eptc-ieee.net · IEEE EPS Flagship Conference)
+- 105–136: QR code area, 31 × 31 mm (right) · circuit traces (left)
+- 127–148: brand footer bar (eptc-ieee.net · IEEE EPS Flagship Conference). The Marina Bay Sands skyline (~40 × 14 mm, ~4 % of the badge) rises out of it in the same gradient, and circuit traces connect to both ends of the SkyPark, so it is part of the background, not a separate picture.
 
 ## Files
 - `out/EPTC2026_badges_A6.pdf`: 8 pages, one per category, exact trim size
