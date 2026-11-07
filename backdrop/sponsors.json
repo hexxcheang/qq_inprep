@@ -1,0 +1,247 @@
+[
+ {
+  "tier": "diamond",
+  "name": "Lam Research",
+  "file": "assets/sponsors/lam-research.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691ac1e352e95.png",
+  "url": "https://www.lamresearch.com/",
+  "px": [
+   2382,
+   833
+  ]
+ },
+ {
+  "tier": "platinum",
+  "name": "Applied Materials",
+  "file": "assets/sponsors/applied-materials.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ab290bf39b9c.png",
+  "url": "https://www.appliedmaterials.com/",
+  "px": [
+   618,
+   198
+  ]
+ },
+ {
+  "tier": "platinum",
+  "name": "Huawei",
+  "file": "assets/sponsors/huawei.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ae1b79f91838.png",
+  "url": null,
+  "px": [
+   2400,
+   525
+  ]
+ },
+ {
+  "tier": "gold",
+  "name": "KLA",
+  "file": "assets/sponsors/kla.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691ac27a64556.png",
+  "url": "https://www.kla.com/",
+  "px": [
+   2400,
+   534
+  ]
+ },
+ {
+  "tier": "gold",
+  "name": "Resonac",
+  "file": "assets/sponsors/resonac.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691ac2f470290.png",
+  "url": "https://ap.resonac.com/",
+  "px": [
+   2400,
+   640
+  ]
+ },
+ {
+  "tier": "gold",
+  "name": "SPIL",
+  "file": "assets/sponsors/spil.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691ac2c2939e2.jpg",
+  "url": "https://www.spilglobal.com/",
+  "px": [
+   404,
+   141
+  ]
+ },
+ {
+  "tier": "silver",
+  "name": "Besi",
+  "file": "assets/sponsors/besi.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a809482333ad.jpg",
+  "url": "https://www.besi.com/",
+  "px": [
+   905,
+   709
+  ]
+ },
+ {
+  "tier": "silver",
+  "name": "Kulicke & Soffa",
+  "file": "assets/sponsors/kulicke-soffa.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a3eb0836220c.png",
+  "url": null,
+  "px": [
+   1690,
+   318
+  ]
+ },
+ {
+  "tier": "silver",
+  "name": "Mi Material",
+  "file": "assets/sponsors/mi-material.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a99851935db9.png",
+  "url": null,
+  "px": [
+   2400,
+   836
+  ]
+ },
+ {
+  "tier": "silver",
+  "name": "Mühlbauer",
+  "file": "assets/sponsors/muehlbauer.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6aaaf8dda8ff4.jpg",
+  "url": "https://www.muehlbauer.de/",
+  "px": [
+   2185,
+   521
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "Amkor Technology",
+  "file": "assets/sponsors/amkor.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691aca2d72eb3.png",
+  "url": "https://amkor.com/",
+  "px": [
+   1873,
+   739
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "ASE",
+  "file": null,
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a99833c4bc2e.png",
+  "url": "https://www.aseglobal.com/"
+ },
+ {
+  "tier": "bronze",
+  "name": "Sponsor (logo not available)",
+  "file": null,
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ae1b80545563.jpg",
+  "url": null
+ },
+ {
+  "tier": "bronze",
+  "name": "Brewer Science",
+  "file": "assets/sponsors/brewer-science.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a6b427f95334.png",
+  "url": "https://www.brewerscience.com/",
+  "px": [
+   338,
+   273
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "Elionix",
+  "file": "assets/sponsors/elionix.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ab2906bafe74.png",
+  "url": "https://www.elionix.co.jp/english",
+  "px": [
+   1920,
+   1080
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "Evatec",
+  "file": "assets/sponsors/evatec.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6aaafa7151add.png",
+  "url": "https://evatecnet.com/",
+  "px": [
+   470,
+   238
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "EV Group",
+  "file": "assets/sponsors/ev-group.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691aca2022630.png",
+  "url": "https://www.evgroup.com/",
+  "px": [
+   2400,
+   1396
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "Fujifilm",
+  "file": "assets/sponsors/fujifilm.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691aca0636cbb.jpg",
+  "url": "https://www.fujifilm.com/em-global/en",
+  "px": [
+   395,
+   68
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "Lintec",
+  "file": "assets/sponsors/lintec.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ac8ac997f83b.png",
+  "url": "https://www.lintec-global.com/",
+  "px": [
+   361,
+   99
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "SIMHub",
+  "file": "assets/sponsors/simhub.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a998250156fd.jpg",
+  "url": "https://www.simhub.com.sg/",
+  "px": [
+   1321,
+   1106
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "STMicroelectronics",
+  "file": "assets/sponsors/stmicroelectronics.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6a6a4f81eae51.jpg",
+  "url": "https://www.st.com/content/st_com/en.html",
+  "px": [
+   584,
+   322
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "TEL",
+  "file": "assets/sponsors/tel.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/6ac8ab99ea8dc.png",
+  "url": "https://www.tel.com/",
+  "px": [
+   2400,
+   1038
+  ]
+ },
+ {
+  "tier": "bronze",
+  "name": "ULVAC",
+  "file": "assets/sponsors/ulvac.png",
+  "src": "https://admin.eptc-ieee.net/storage/sponsor_logos/original/691aca63084fd.png",
+  "url": "https://www.ulvac.co.jp/en/",
+  "px": [
+   1831,
+   339
+  ]
+ }
+]

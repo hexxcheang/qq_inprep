@@ -1,0 +1,1 @@
+{"name":"eptc2026-backdrop","private":true,"scripts":{"build":"node build_backdrop.js"},"dependencies":{"pdf-lib":"^1.17.1"}}
