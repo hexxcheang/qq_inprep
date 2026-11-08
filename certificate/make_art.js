@@ -24,88 +24,21 @@ const GOLD = `
 
 const i = v => v * DPI; // inches -> px
 
-// guilloche: interlaced sine waves along a straight band
-function guillocheBand(x0, y0, len, thick, horizontal) {
-  let out = '';
-  const waves = 5, period = i(0.36);
-  for (let k = 0; k < waves; k++) {
-    const ph = (k / waves) * Math.PI * 2;
-    const pts = [];
-    for (let t = 0; t <= len; t += 6) {
-      const o = thick / 2 + (thick / 2 - 6) * Math.sin((t / period) * Math.PI * 2 + ph);
-      pts.push(horizontal ? [x0 + t, y0 + o] : [x0 + o, y0 + t]);
-    }
-    out += `<polyline points="${pts.map(p => p.map(n => n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#B8902F" stroke-width="2.2" stroke-opacity="0.85"/>`;
-  }
-  return out;
-}
 
-// circuit trace with square pad (EPTC motif), drawn in fine gold
-function trace(pts) {
-  const d = 'M' + pts.map(p => p.map(i).join(' ')).join(' L');
-  const [x, y] = pts.at(-1).map(i), s = i(0.07);
-  return `<path d="${d}" fill="none" stroke="#C9A24A" stroke-width="4"/><rect x="${x - s / 2}" y="${y - s / 2}" width="${s}" height="${s}" fill="#fff" stroke="#C9A24A" stroke-width="4"/>`;
-}
 
-function cornerOrnament() {
-  // drawn for the top-left corner, mirrored for the others
-  const c = i(0.39); // centre of corner medallion on the guilloche band
-  return `
-    <rect x="${c - i(0.2)}" y="${c - i(0.2)}" width="${i(0.4)}" height="${i(0.4)}" fill="url(#gold)" stroke="#7A5716" stroke-width="4"/>
-    <rect x="${c - i(0.14)}" y="${c - i(0.14)}" width="${i(0.28)}" height="${i(0.28)}" fill="#FFFDF7" stroke="#9C7420" stroke-width="3"/>
-    <path d="M${c} ${c - i(0.11)} L${c + i(0.11)} ${c} L${c} ${c + i(0.11)} L${c - i(0.11)} ${c} Z" fill="url(#gold)" stroke="#7A5716" stroke-width="3"/>
-    <circle cx="${c}" cy="${c}" r="${i(0.03)}" fill="#7A5716"/>
-    <!-- art-deco stepped flourish inside the inner frame -->
-    <path d="M${i(0.72)} ${i(1.55)} V${i(0.98)} Q${i(0.72)} ${i(0.72)} ${i(0.98)} ${i(0.72)} H${i(1.55)}" fill="none" stroke="url(#gold)" stroke-width="7"/>
-    <path d="M${i(0.8)} ${i(1.2)} V${i(1.02)} Q${i(0.8)} ${i(0.8)} ${i(1.02)} ${i(0.8)} H${i(1.2)}" fill="none" stroke="#B8902F" stroke-width="3"/>
-    <circle cx="${i(1.55)}" cy="${i(0.72)}" r="${i(0.025)}" fill="#B8902F"/><circle cx="${i(0.72)}" cy="${i(1.55)}" r="${i(0.025)}" fill="#B8902F"/>
-    <path d="M${i(0.9)} ${i(0.9)} l${i(0.06)} ${i(-0.06)} l${i(0.06)} ${i(0.06)} l${i(-0.06)} ${i(0.06)} Z" fill="url(#gold)"/>`;
-}
 
+// Formal frame: a solid gold outer rule and a thin inner rule with concave (notched) corners.
 function borderSVG() {
-  const o1 = i(0.15), o2 = i(0.63);        // outer band edge, inner frame edge
-  const gb0 = i(0.27), gbT = i(0.24);       // guilloche band start / thickness
-  const corners = [
-    '', `transform="translate(${W} 0) scale(-1 1)"`, `transform="translate(0 ${H}) scale(1 -1)"`, `transform="translate(${W} ${H}) scale(-1 -1)"`,
-  ].map(t => `<g ${t}>${cornerOrnament()}</g>`).join('');
+  const o = i(0.3), ow = i(0.05);          // outer rule inset and weight
+  const n = i(0.44), nw = i(0.014);        // inner rule inset and weight
+  const r = i(0.2);                        // corner notch radius
+  const x0 = n, y0 = n, x1 = W - n, y1 = H - n;
+  const inner = `M${x0 + r} ${y0} H${x1 - r} A${r} ${r} 0 0 0 ${x1} ${y0 + r} V${y1 - r} A${r} ${r} 0 0 0 ${x1 - r} ${y1}
+    H${x0 + r} A${r} ${r} 0 0 0 ${x0} ${y1 - r} V${y0 + r} A${r} ${r} 0 0 0 ${x0 + r} ${y0} Z`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <defs>${GOLD}
-    <radialGradient id="paper" cx="0.5" cy="0.45" r="0.75">
-      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FBF6EA"/>
-    </radialGradient>
-  </defs>
-  <rect width="${W}" height="${H}" fill="url(#paper)"/>
-
-  <!-- faint rosette watermark (guilloche rings) behind the recipient block -->
-  <g transform="translate(${W / 2} ${i(3.65)})" opacity="0.07" fill="none" stroke="#9C7420" stroke-width="3">
-    ${Array.from({ length: 36 }, (_, k) => `<ellipse rx="${i(1.6)}" ry="${i(0.55)}" transform="rotate(${k * 5})"/>`).join('')}
-    ${Array.from({ length: 24 }, (_, k) => `<ellipse rx="${i(0.62)}" ry="${i(0.2)}" transform="rotate(${k * 7.5})"/>`).join('')}
-    <circle r="${i(1.62)}"/><circle r="${i(1.7)}"/>
-  </g>
-
-  <!-- outer metallic band -->
-  <rect x="${o1}" y="${o1}" width="${W - 2 * o1}" height="${H - 2 * o1}" fill="none" stroke="url(#gold)" stroke-width="${i(0.09)}"/>
-  <rect x="${o1 + i(0.06)}" y="${o1 + i(0.06)}" width="${W - 2 * o1 - i(0.12)}" height="${H - 2 * o1 - i(0.12)}" fill="none" stroke="#7A5716" stroke-width="2"/>
-  <!-- guilloche band -->
-  ${guillocheBand(gb0, gb0, W - 2 * gb0, gbT, true)}
-  ${guillocheBand(gb0, H - gb0 - gbT, W - 2 * gb0, gbT, true)}
-  ${guillocheBand(gb0, gb0, H - 2 * gb0, gbT, false)}
-  ${guillocheBand(W - gb0 - gbT, gb0, H - 2 * gb0, gbT, false)}
-  <rect x="${gb0}" y="${gb0}" width="${W - 2 * gb0}" height="${H - 2 * gb0}" fill="none" stroke="#B8902F" stroke-width="3"/>
-  <rect x="${gb0 + gbT}" y="${gb0 + gbT}" width="${W - 2 * (gb0 + gbT)}" height="${H - 2 * (gb0 + gbT)}" fill="none" stroke="#B8902F" stroke-width="3"/>
-  <!-- inner double rule -->
-  <rect x="${o2}" y="${o2}" width="${W - 2 * o2}" height="${H - 2 * o2}" fill="none" stroke="url(#gold)" stroke-width="${i(0.025)}"/>
-  <rect x="${o2 + i(0.05)}" y="${o2 + i(0.05)}" width="${W - 2 * o2 - i(0.1)}" height="${H - 2 * o2 - i(0.1)}" fill="none" stroke="#C9A24A" stroke-width="2"/>
-
-  ${corners}
-
-  <!-- fine gold circuit traces in the lower corners (packaging motif) -->
-  <g opacity="0.55">
-    ${trace([[0.68, 5.2], [0.95, 5.2], [1.1, 5.35], [1.45, 5.35]])}
-    ${trace([[0.68, 5.45], [0.85, 5.45], [1.0, 5.6], [1.2, 5.6]])}
-    ${trace([[9.32, 5.2], [9.05, 5.2], [8.9, 5.35], [8.55, 5.35]])}
-    ${trace([[9.32, 5.45], [9.15, 5.45], [9.0, 5.6], [8.8, 5.6]])}
-  </g>
+  <rect width="${W}" height="${H}" fill="#FFFFFF"/>
+  <rect x="${o}" y="${o}" width="${W - 2 * o}" height="${H - 2 * o}" fill="none" stroke="#A9842F" stroke-width="${ow}"/>
+  <path d="${inner}" fill="none" stroke="#A9842F" stroke-width="${nw}"/>
 </svg>`;
 }
 
