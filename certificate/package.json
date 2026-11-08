@@ -1,0 +1,1 @@
+{"name":"eptc-certificate","private":true,"scripts":{"build":"node make_art.js && node build_certificate.js"},"dependencies":{"pptxgenjs":"^3.12.0"}}
