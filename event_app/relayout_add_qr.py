@@ -4,7 +4,7 @@ im = np.asarray(Image.open('v9/base.png').convert('RGB')).astype(np.float32)
 H, W, _ = im.shape
 X0, X1, Y0, Y1 = 62, 712, 190, 530                       # text block region
 DY = -133                                                # shift up
-QR_X, QR_Y, QR_S = 74, 408, 174       # white card (x, y, size)
+QR_X, QR_Y, QR_S = 298, 420, 174      # white card (x, y, size)
 box = np.zeros((H, W), bool); box[Y0:Y1, X0:X1] = True
 k = cv2.getStructuringElement(cv2.MORPH_RECT, (35, 35))
 med = cv2.morphologyEx(im.astype(np.uint8), cv2.MORPH_CLOSE, k).astype(np.float32)   # background without dark strokes
