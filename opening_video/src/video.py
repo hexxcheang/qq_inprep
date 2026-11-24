@@ -378,7 +378,7 @@ def build_overlays():
     OV["date"] = sup_line([("1", 0), ("st", 1), (" to 4", 0), ("th", 1), (" December 2026", 0)],
                           font("mont500.woff", 21), font("mont500.woff", 13))
     f19 = font("mont500.woff", 20)
-    OV["b1"] = text_rgba("IEEE EPS Flagship Conference in Asia", f19, tracking=0.6)
+    OV["b1"] = text_rgba("IEEE EPS Flagship Conference in the Asia Pacific Region", f19, tracking=0.6)
     OV["b2"] = text_rgba("Singapore", f19, tracking=0.6)
     for k in ("line1", "date", "b1", "b2"):
         OV[k + "_glow"] = glow_of(OV[k], 6, (1.0, 0.5, 0.15), 0.35)
