@@ -25,3 +25,14 @@ cd opening_video/src && python3 video.py render video_silent.mp4 && ffmpeg -i vi
 
 `eqmatch.py` matches the score's tonal balance to a reference track (the EPTC 2025 video's audio was used); skip it to use the raw mix.
 `python3 video.py frames 2.5 9 19.5` renders still test frames.
+
+## Full opening (countdown + landing scene)
+
+`EPTC_2026_Opening_Full.mp4`: 42 s (28 s countdown, then the 14 s landing scene), 1024×576, 30 fps, stored in Higgsfield:
+https://d2ol7oe51mr4n9.cloudfront.net/user_3KVLcaaolY1ju8ahMbcysIiBVCz/4a2951c9-e23d-4aac-a028-a783c4edbb04.mp4
+
+Joined with:
+
+```bash
+ffmpeg -i EPTC_2026_Opening_Countdown_Video.mp4 -i EPTC_2026_Landing_Scene.mp4 -filter_complex "[0:v]setsar=1,fps=30,format=yuv420p[v0];[1:v]setsar=1,fps=30,format=yuv420p[v1];[0:a]aresample=44100,aformat=channel_layouts=stereo[a0];[1:a]aresample=44100,aformat=channel_layouts=stereo[a1];[v0][a0][v1][a1]concat=n=2:v=1:a=1[v][a]" -map "[v]" -map "[a]" -c:v libx264 -preset slow -crf 21 -tune grain -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart EPTC_2026_Opening_Full.mp4
+```
