@@ -28,8 +28,10 @@ cd opening_video/src && python3 video.py render video_silent.mp4 && ffmpeg -i vi
 
 ## Full opening (countdown + landing scene)
 
-`EPTC_2026_Opening_Full.mp4`: 42 s (28 s countdown, then the 14 s landing scene), 1024×576, 30 fps, stored in Higgsfield:
-https://d2ol7oe51mr4n9.cloudfront.net/user_3KVLcaaolY1ju8ahMbcysIiBVCz/4a2951c9-e23d-4aac-a028-a783c4edbb04.mp4
+`EPTC_2026_Opening_Full_v2.mp4`: 62.5 s (28 s countdown, then the 34.5 s landing scene ending on a 20 s still of the ship at the MBS fountain), 1024×576, 30 fps, stored in Higgsfield:
+https://d2ol7oe51mr4n9.cloudfront.net/user_3KVLcaaolY1ju8ahMbcysIiBVCz/0ec77d20-bfcb-4dab-8229-e1bb04e22fc9.mp4
+
+v1 (42 s, ends on white): https://d2ol7oe51mr4n9.cloudfront.net/user_3KVLcaaolY1ju8ahMbcysIiBVCz/4a2951c9-e23d-4aac-a028-a783c4edbb04.mp4
 
 Joined with:
 
